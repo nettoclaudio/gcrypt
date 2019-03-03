@@ -10,5 +10,5 @@ insert_final_newline = true
 [*.yml]
 indent_size = 2
 
-[*.js]
+[*.js{,x}]
 indent_size = 2
