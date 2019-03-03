@@ -1,0 +1,26 @@
+{
+  "name": "@globocom/gcrypt-dashboard",
+  "version": "0.1.0",
+  "description": "Web dashboard to use all GCrypt features.",
+  "repository": "https://github.com/globocom/gcrypt.git",
+  "author": "CSIRT.globo",
+  "license": "MIT",
+  "browser": true,
+  "dependencies": {
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-scripts": "2.1.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
