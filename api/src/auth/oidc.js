@@ -16,8 +16,6 @@ class OpenIDConnectProvider {
   }
 
   get authorizationURL() {
-    console.log(this.redirectURL);
-
     return this.client.authorizationUrl({
       redirect_uri: this.redirectURL,
       scope: this.scopes,
