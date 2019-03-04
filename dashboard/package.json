@@ -7,6 +7,7 @@
   "license": "MIT",
   "browser": true,
   "dependencies": {
+    "@globocom/gcrypt-core": "../core",
     "bootstrap": "^4.3.1",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0-beta.5",

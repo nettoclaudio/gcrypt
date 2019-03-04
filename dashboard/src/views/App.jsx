@@ -4,6 +4,7 @@
  * License: MIT
  */
 
+import { BrowserClient as GCrypt } from '@globocom/gcrypt-core';
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -12,26 +13,23 @@ import {
 
 import Home from './Home';
 
-function ensureGCryptAPIAddressIsDefinedIntoWindow() {
+function createGCryptClientAtGlobalContext() {
   const apiAddress = process.env.REACT_APP_GCRYPT_API_ADDRESS;
-
-  if (apiAddress == null) {
-    throw new Error('The environment variable REACT_APP_GCRYPT_API_ADDRESS is mandatory');
-  }
 
   try {
     new URL(apiAddress);
   } catch (error) {
-    throw new Error(`REACT_APP_GCRYPT_API_ADDRESS environment variable must be a valid URL: ${error}`);
+    throw new Error(`REACT_APP_GCRYPT_API_ADDRESS environment variable is missing or not a valid URL: ${error}`);
   }
 
-  window.gcrypt = apiAddress;
+  window.gcrypt = window.gcrypt || {};
+  window.gcrypt.client = new GCrypt(apiAddress);
 }
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    ensureGCryptAPIAddressIsDefinedIntoWindow();
+    createGCryptClientAtGlobalContext();
   }
 
   render() {
