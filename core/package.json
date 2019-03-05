@@ -29,6 +29,6 @@
     "test": "jest --browser --coverage --verbose ./src/browser"
   },
   "browser": {
-    "./src/index.js": "./src/browser/index.js"
+    "./src/index.js": "./src/browser/client.js"
   }
 }
