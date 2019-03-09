@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Questrial|Roboto');
+
+$primary-font-family: 'Roboto', sans-serif;
+$primary-color: rgb(78, 79, 99);
+
+$secondary-font-family: 'Questrial', sans-serif;
+
+$color-white-ice: rgb(225, 231, 228);
+
+body {
+    color: $primary-color;
+    font-family: $primary-font-family;
+    font-size: 150%;
+    letter-spacing: 0.05rem;
+    text-align: justify;
+}
+
+.project-brand {
+    font-family: $secondary-font-family;
+    font-size: 5rem;
+    font-weight: bold;
+    text-shadow: 0.2rem 0.2rem $color-white-ice;
+
+    a {
+        color: $primary-color;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

@@ -5,10 +5,15 @@
  */
 
 import React from 'react';
+import BaseContainer from '../components/BaseContainer';
 
 class Home extends React.Component {
   render() {
-    return <p>Home page</p>;
+    return (
+      <BaseContainer>
+        <p>Home page</p>
+      </BaseContainer>
+    );
   }
 }
 

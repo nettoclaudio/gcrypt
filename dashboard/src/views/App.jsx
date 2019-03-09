@@ -9,9 +9,12 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Redirect,
 } from 'react-router-dom';
 
 import Home from './Home';
+import Login from './Login';
+import AuthCallback from './AuthCallback';
 
 function createGCryptClientAtGlobalContext() {
   const apiAddress = process.env.REACT_APP_GCRYPT_API_ADDRESS;
@@ -32,12 +35,33 @@ class App extends React.Component {
     createGCryptClientAtGlobalContext();
   }
 
+  isAuthenticated() {
+    return window.gcrypt.client.sessionStorage.retrieve() == null
+      ? false : true;
+  }
+
   render() {
     return (
       <Router>
-        <div>
-          <Route path="/" component={Home} exact />
-        </div>
+        <>
+          <Route path="/" exact render={() => {
+            return this.isAuthenticated()
+              ? <Home />
+              : <Redirect to='/login' />
+          }} />
+
+          <Route path="/login" render={() => {
+            return this.isAuthenticated()
+              ? <Redirect to='/' />
+              : <Login />
+          }} />
+
+          <Route path="/auth/callback" render={() => {
+            return this.isAuthenticated()
+              ? <Redirect to='/' />
+              : <AuthCallback />
+          }} />
+        </>
       </Router>
     );
   }
