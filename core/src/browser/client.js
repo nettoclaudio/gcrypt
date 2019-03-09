@@ -6,8 +6,12 @@
 
 import axios from 'axios';
 
+const defautlOptions = {
+  timeout: 5000, // 5 seconds
+};
+
 class Client {
-  constructor(target) {
+  constructor(target, options={}) {
     try {
       new URL(target);
     } catch (error) {
@@ -15,16 +19,22 @@ class Client {
     }
 
     this.target = target;
+    this.options = Object.assign(options, defautlOptions);
 
     this.baseHttpClient = axios.create({
       baseURL: this.target,
-      timeout: 5000,
+      timeout: this.options.timeout,
     });
   }
 
   isHealthy() {
-    return this.baseHttpClient.get('/health')
-      .then(response => response.status === 200 ? true : false)
+    const config = {
+      responseType: 'text',
+      validateStatus: status => status === 200,
+    };
+
+    return this.baseHttpClient.get('/health', config)
+      .then(() => true)
       .catch(() => Promise.resolve(false));
   }
 }
