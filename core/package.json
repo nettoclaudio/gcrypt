@@ -24,7 +24,8 @@
     "nock": "^10.0.6"
   },
   "scripts": {
-    "ci": "yarn run test",
+    "ci": "yarn run test && yarn run lint",
+    "lint": "eslint ./src",
     "test": "jest --browser --coverage --verbose ./src/browser"
   },
   "browser": {
